@@ -1,15 +1,9 @@
 Grow Irish Project
 ================
 
-## GitHub Documents
-
-This is an R Markdown format used for publishing markdown documents to
-GitHub. When you click the **Knit** button all R code chunks are run and
-a markdown file (.md) suitable for publishing to GitHub is generated.
+## Grow Irish: Group Project
 
 ## Including Code
-
-You can include R code in the document as follows:
 
 ``` r
 library(dplyr)
@@ -52,27 +46,46 @@ odbcListDrivers()
     ## 5                                              SQL Server        FileUsage
     ## 6                                              SQL Server         SQLLevel
     ## 7                                              SQL Server       UsageCount
-    ## 8                Microsoft Access Driver (*.mdb, *.accdb)       UsageCount
-    ## 9                Microsoft Access Driver (*.mdb, *.accdb)         APILevel
-    ## 10               Microsoft Access Driver (*.mdb, *.accdb) ConnectFunctions
-    ## 11               Microsoft Access Driver (*.mdb, *.accdb)    DriverODBCVer
-    ## 12               Microsoft Access Driver (*.mdb, *.accdb)        FileUsage
-    ## 13               Microsoft Access Driver (*.mdb, *.accdb)        FileExtns
-    ## 14               Microsoft Access Driver (*.mdb, *.accdb)         SQLLevel
-    ## 15 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)       UsageCount
-    ## 16 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)         APILevel
-    ## 17 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb) ConnectFunctions
-    ## 18 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)    DriverODBCVer
-    ## 19 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)        FileUsage
-    ## 20 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)        FileExtns
-    ## 21 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)         SQLLevel
-    ## 22            Microsoft Access Text Driver (*.txt, *.csv)       UsageCount
-    ## 23            Microsoft Access Text Driver (*.txt, *.csv)         APILevel
-    ## 24            Microsoft Access Text Driver (*.txt, *.csv) ConnectFunctions
-    ## 25            Microsoft Access Text Driver (*.txt, *.csv)    DriverODBCVer
-    ## 26            Microsoft Access Text Driver (*.txt, *.csv)        FileUsage
-    ## 27            Microsoft Access Text Driver (*.txt, *.csv)        FileExtns
-    ## 28            Microsoft Access Text Driver (*.txt, *.csv)         SQLLevel
+    ## 8                                    PostgreSQL ANSI(x64)         APILevel
+    ## 9                                    PostgreSQL ANSI(x64) ConnectFunctions
+    ## 10                                   PostgreSQL ANSI(x64)    DriverODBCVer
+    ## 11                                   PostgreSQL ANSI(x64)        FileUsage
+    ## 12                                   PostgreSQL ANSI(x64)         SQLLevel
+    ## 13                                   PostgreSQL ANSI(x64)       UsageCount
+    ## 14                                PostgreSQL Unicode(x64)         APILevel
+    ## 15                                PostgreSQL Unicode(x64) ConnectFunctions
+    ## 16                                PostgreSQL Unicode(x64)    DriverODBCVer
+    ## 17                                PostgreSQL Unicode(x64)        FileUsage
+    ## 18                                PostgreSQL Unicode(x64)         SQLLevel
+    ## 19                                PostgreSQL Unicode(x64)       UsageCount
+    ## 20                          ODBC Driver 17 for SQL Server       UsageCount
+    ## 21                          ODBC Driver 17 for SQL Server         APILevel
+    ## 22                          ODBC Driver 17 for SQL Server ConnectFunctions
+    ## 23                          ODBC Driver 17 for SQL Server        CPTimeout
+    ## 24                          ODBC Driver 17 for SQL Server    DriverODBCVer
+    ## 25                          ODBC Driver 17 for SQL Server        FileUsage
+    ## 26                          ODBC Driver 17 for SQL Server         SQLLevel
+    ## 27               Microsoft Access Driver (*.mdb, *.accdb)       UsageCount
+    ## 28               Microsoft Access Driver (*.mdb, *.accdb)         APILevel
+    ## 29               Microsoft Access Driver (*.mdb, *.accdb) ConnectFunctions
+    ## 30               Microsoft Access Driver (*.mdb, *.accdb)    DriverODBCVer
+    ## 31               Microsoft Access Driver (*.mdb, *.accdb)        FileUsage
+    ## 32               Microsoft Access Driver (*.mdb, *.accdb)        FileExtns
+    ## 33               Microsoft Access Driver (*.mdb, *.accdb)         SQLLevel
+    ## 34 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)       UsageCount
+    ## 35 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)         APILevel
+    ## 36 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb) ConnectFunctions
+    ## 37 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)    DriverODBCVer
+    ## 38 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)        FileUsage
+    ## 39 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)        FileExtns
+    ## 40 Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)         SQLLevel
+    ## 41            Microsoft Access Text Driver (*.txt, *.csv)       UsageCount
+    ## 42            Microsoft Access Text Driver (*.txt, *.csv)         APILevel
+    ## 43            Microsoft Access Text Driver (*.txt, *.csv) ConnectFunctions
+    ## 44            Microsoft Access Text Driver (*.txt, *.csv)    DriverODBCVer
+    ## 45            Microsoft Access Text Driver (*.txt, *.csv)        FileUsage
+    ## 46            Microsoft Access Text Driver (*.txt, *.csv)        FileExtns
+    ## 47            Microsoft Access Text Driver (*.txt, *.csv)         SQLLevel
     ##                   value
     ## 1                     2
     ## 2                   YYY
@@ -81,27 +94,46 @@ odbcListDrivers()
     ## 5                     0
     ## 6                     1
     ## 7                     1
-    ## 8                     3
-    ## 9                     1
-    ## 10                  YYN
-    ## 11                02.50
-    ## 12                    2
-    ## 13        *.mdb,*.accdb
-    ## 14                    0
-    ## 15                    3
-    ## 16                    1
-    ## 17                  YYN
-    ## 18                02.50
-    ## 19                    2
-    ## 20 *.xls,*.xlsx, *.xlsb
-    ## 21                    0
-    ## 22                    3
-    ## 23                    1
-    ## 24                  YYN
-    ## 25                02.50
-    ## 26                    2
-    ## 27         *.txt, *.csv
-    ## 28                    0
+    ## 8                     1
+    ## 9                   YYN
+    ## 10                03.51
+    ## 11                    0
+    ## 12                    1
+    ## 13                    1
+    ## 14                    1
+    ## 15                  YYN
+    ## 16                03.51
+    ## 17                    0
+    ## 18                    1
+    ## 19                    1
+    ## 20                    1
+    ## 21                    2
+    ## 22                  YYY
+    ## 23                   60
+    ## 24                03.80
+    ## 25                    0
+    ## 26                    1
+    ## 27                    3
+    ## 28                    1
+    ## 29                  YYN
+    ## 30                02.50
+    ## 31                    2
+    ## 32        *.mdb,*.accdb
+    ## 33                    0
+    ## 34                    3
+    ## 35                    1
+    ## 36                  YYN
+    ## 37                02.50
+    ## 38                    2
+    ## 39 *.xls,*.xlsx, *.xlsb
+    ## 40                    0
+    ## 41                    3
+    ## 42                    1
+    ## 43                  YYN
+    ## 44                02.50
+    ## 45                    2
+    ## 46         *.txt, *.csv
+    ## 47                    0
 
 ``` r
 con <- DBI::dbConnect(odbc(),
