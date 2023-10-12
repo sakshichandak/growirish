@@ -211,8 +211,8 @@ print(select_res)
     ## 28                  Public Indecency     89
     ## 29          Other Narcotic Violation     32
     ## 30                      Non-Criminal     20
-    ## 31                      Sex Offenses      6
-    ## 32                 Human Trafficking      6
+    ## 31                 Human Trafficking      6
+    ## 32                      Sex Offenses      6
 
 ``` r
 head(select_res, 2)
@@ -222,7 +222,7 @@ head(select_res, 2)
     ## 1 Narcotics 171474
     ## 2   Battery  86435
 
-## Q2: Visual representation of the top 6 categories in terms of number of arrests
+## Q2: Visual representation of the top 5 categories in terms of number of arrests
 
 ``` r
 sql_statement <- "
@@ -277,8 +277,8 @@ print(select_res)
     ## 28                  Public Indecency     89
     ## 29          Other Narcotic Violation     32
     ## 30                      Non-Criminal     20
-    ## 31                      Sex Offenses      6
-    ## 32                 Human Trafficking      6
+    ## 31                 Human Trafficking      6
+    ## 32                      Sex Offenses      6
 
 ``` r
 head(select_res, 5)

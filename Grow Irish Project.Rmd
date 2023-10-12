@@ -54,7 +54,7 @@ print(select_res)
 head(select_res, 2)
 ```
 
-## Q2: Visual representation of the top 6 categories in terms of number of arrests
+## Q2: Visual representation of the top 5 categories in terms of number of arrests
 
 ```{r}
 sql_statement <- "
