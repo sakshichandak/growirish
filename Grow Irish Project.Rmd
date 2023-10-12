@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Grow Irish: Group Project
 
-## Including Code
+## Q1 : What are the top two categories in terms of number of arrests?
 
 ```{r}
 library(dplyr)
@@ -30,6 +30,62 @@ con <- DBI::dbConnect(odbc(),
 dbListFields(con, "IUCR")
 
 dbListFields(con, "crimes")
+
+# SQL to join `IUCR` and `crimes` tables, then group by category, filter where arrests are TRUE, 
+# and finally order the result by count of arrests in descending order
+sql_statement <- "
+  SELECT I.category, COUNT(*) AS 'Count'
+  FROM crimes AS C
+  JOIN IUCR I
+  ON I.IUCR = C.IUCR 
+  WHERE C.arrest = 'TRUE'
+  GROUP BY I.category
+  ORDER BY count DESC
+"
+
+# Send the query
+select_q <- dbSendQuery(conn = con, statement = sql_statement)
+
+# Fetch the result
+select_res <- dbFetch(select_q)
+
+# This result should have the category with the highest arrests
+print(select_res)
+head(select_res, 2)
 ```
 
-## Plotting
+## Q2: Visual representation of the top 6 categories in terms of number of arrests
+
+```{r}
+sql_statement <- "
+  SELECT I.category, COUNT(*) AS 'Count'
+  FROM crimes AS C
+  JOIN IUCR I
+  ON I.IUCR = C.IUCR 
+  WHERE C.arrest = 'TRUE'
+  GROUP BY I.category
+  ORDER BY count DESC
+"
+
+select_q <- dbSendQuery(conn = con, statement = sql_statement)
+select_res <- dbFetch(select_q)
+print(select_res)
+head(select_res, 5)
+```
+
+```{r}
+library(ggmosaic)
+library(ggplot2)
+
+# Using the top 5 data
+top5_data <- head(select_res, 5)
+
+ggplot(data=top5_data) +
+  geom_mosaic(aes(weight=Count, x=product(category), fill=category)) +
+  labs(title = "Mosaic Plot of Top 5 Categories by Arrests", 
+       x = "Category", 
+       y = "Proportion of Arrests") +
+  scale_fill_brewer(palette="Set1") +  
+  theme_minimal()
+```
+

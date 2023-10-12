@@ -3,7 +3,7 @@ Grow Irish Project
 
 ## Grow Irish: Group Project
 
-## Including Code
+## Q1 : What are the top two categories in terms of number of arrests?
 
 ``` r
 library(dplyr)
@@ -157,4 +157,159 @@ dbListFields(con, "crimes")
     ##  [6] "arrest"       "domestic"     "beat"         "district"     "ward"        
     ## [11] "area"         "latitude"     "longitude"
 
-## Plotting
+``` r
+# SQL to join `IUCR` and `crimes` tables, then group by category, filter where arrests are TRUE, 
+# and finally order the result by count of arrests in descending order
+sql_statement <- "
+  SELECT I.category, COUNT(*) AS 'Count'
+  FROM crimes AS C
+  JOIN IUCR I
+  ON I.IUCR = C.IUCR 
+  WHERE C.arrest = 'TRUE'
+  GROUP BY I.category
+  ORDER BY count DESC
+"
+
+# Send the query
+select_q <- dbSendQuery(conn = con, statement = sql_statement)
+
+# Fetch the result
+select_res <- dbFetch(select_q)
+
+# This result should have the category with the highest arrests
+print(select_res)
+```
+
+    ##                             category  Count
+    ## 1                          Narcotics 171474
+    ## 2                            Battery  86435
+    ## 3                              Theft  54882
+    ## 4                  Criminal Trespass  36444
+    ## 5                            Assault  30148
+    ## 6                      Other Offense  29323
+    ## 7                  Weapons Violation  24943
+    ## 8                    Criminal Damage  15024
+    ## 9             Public Peace Violation  11901
+    ## 10                Deceptive Practice  11618
+    ## 11                      Prostitution   9701
+    ## 12  Interference With Public Officer   9553
+    ## 13                           Robbery   7959
+    ## 14               Motor Vehicle Theft   6522
+    ## 15                          Burglary   6275
+    ## 16        Offense Involving Children   2879
+    ## 17                          Gambling   2711
+    ## 18              Liquor Law Violation   2552
+    ## 19                       Sex Offense   1697
+    ## 20                          Homicide   1582
+    ## 21               Crim Sexual Assault   1304
+    ## 22 Concealed Carry License Violation    499
+    ## 23                             Arson    322
+    ## 24                         Obscenity    279
+    ## 25                          Stalking    218
+    ## 26                      Intimidation    149
+    ## 27                        Kidnapping    133
+    ## 28                  Public Indecency     89
+    ## 29          Other Narcotic Violation     32
+    ## 30                      Non-Criminal     20
+    ## 31                      Sex Offenses      6
+    ## 32                 Human Trafficking      6
+
+``` r
+head(select_res, 2)
+```
+
+    ##    category  Count
+    ## 1 Narcotics 171474
+    ## 2   Battery  86435
+
+## Q2: Visual representation of the top 6 categories in terms of number of arrests
+
+``` r
+sql_statement <- "
+  SELECT I.category, COUNT(*) AS 'Count'
+  FROM crimes AS C
+  JOIN IUCR I
+  ON I.IUCR = C.IUCR 
+  WHERE C.arrest = 'TRUE'
+  GROUP BY I.category
+  ORDER BY count DESC
+"
+
+select_q <- dbSendQuery(conn = con, statement = sql_statement)
+```
+
+    ## Warning in new_result(connection@ptr, statement, immediate): Cancelling
+    ## previous query
+
+``` r
+select_res <- dbFetch(select_q)
+print(select_res)
+```
+
+    ##                             category  Count
+    ## 1                          Narcotics 171474
+    ## 2                            Battery  86435
+    ## 3                              Theft  54882
+    ## 4                  Criminal Trespass  36444
+    ## 5                            Assault  30148
+    ## 6                      Other Offense  29323
+    ## 7                  Weapons Violation  24943
+    ## 8                    Criminal Damage  15024
+    ## 9             Public Peace Violation  11901
+    ## 10                Deceptive Practice  11618
+    ## 11                      Prostitution   9701
+    ## 12  Interference With Public Officer   9553
+    ## 13                           Robbery   7959
+    ## 14               Motor Vehicle Theft   6522
+    ## 15                          Burglary   6275
+    ## 16        Offense Involving Children   2879
+    ## 17                          Gambling   2711
+    ## 18              Liquor Law Violation   2552
+    ## 19                       Sex Offense   1697
+    ## 20                          Homicide   1582
+    ## 21               Crim Sexual Assault   1304
+    ## 22 Concealed Carry License Violation    499
+    ## 23                             Arson    322
+    ## 24                         Obscenity    279
+    ## 25                          Stalking    218
+    ## 26                      Intimidation    149
+    ## 27                        Kidnapping    133
+    ## 28                  Public Indecency     89
+    ## 29          Other Narcotic Violation     32
+    ## 30                      Non-Criminal     20
+    ## 31                      Sex Offenses      6
+    ## 32                 Human Trafficking      6
+
+``` r
+head(select_res, 5)
+```
+
+    ##            category  Count
+    ## 1         Narcotics 171474
+    ## 2           Battery  86435
+    ## 3             Theft  54882
+    ## 4 Criminal Trespass  36444
+    ## 5           Assault  30148
+
+``` r
+library(ggmosaic)
+```
+
+    ## Loading required package: ggplot2
+
+``` r
+library(ggplot2)
+
+# Using the top 5 data
+top5_data <- head(select_res, 5)
+
+ggplot(data=top5_data) +
+  geom_mosaic(aes(weight=Count, x=product(category), fill=category)) +
+  labs(title = "Mosaic Plot of Top 5 Categories by Arrests", 
+       x = "Category", 
+       y = "Proportion of Arrests") +
+  scale_fill_brewer(palette="Set1") +  
+  theme_minimal()
+```
+
+![](Grow-Irish-Project_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
