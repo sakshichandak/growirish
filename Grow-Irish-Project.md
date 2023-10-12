@@ -143,4 +143,18 @@ con <- DBI::dbConnect(odbc(),
                       PWD = "SQL%database!Mendoza",
                       Port = 3306, 
                       Database = "ChicagoCrime")
+
+dbListFields(con, "IUCR")
 ```
+
+    ## [1] "IUCR"        "category"    "subcategory" "index"
+
+``` r
+dbListFields(con, "crimes")
+```
+
+    ##  [1] "id"           "date"         "block"        "IUCR"         "locationType"
+    ##  [6] "arrest"       "domestic"     "beat"         "district"     "ward"        
+    ## [11] "area"         "latitude"     "longitude"
+
+## Plotting

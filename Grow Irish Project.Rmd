@@ -26,5 +26,10 @@ con <- DBI::dbConnect(odbc(),
                       PWD = "SQL%database!Mendoza",
                       Port = 3306, 
                       Database = "ChicagoCrime")
+
+dbListFields(con, "IUCR")
+
+dbListFields(con, "crimes")
 ```
 
+## Plotting
